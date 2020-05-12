@@ -1,7 +1,7 @@
 // import { shallowMount } from '@vue/test-utils'
 // import HelloWorld from '@/components/HelloWorld.vue'
 // import Loading from '@/components/Loading.vue'
-import sinon from 'sinon' // 兴农
+// import sinon from 'sinon' // 兴农
 // var chai = require('chai') // 断言库
 // var assert = chai.assert
 
@@ -49,7 +49,7 @@ import sinon from 'sinon' // 兴农
 //     expect(wrapper).toMatchSnapshot()
 //   })
 // })
-
+// ---------------------------- sinon start -------------------------
 // sinon.spy函数返回一个Spy对象，使用spy替换一个其它函数，用来检测函数是否被调用非常方便：
 // describe('test sinon spy', () => {
 //   var user = {
@@ -121,131 +121,195 @@ import sinon from 'sinon' // 兴农
 //   })
 // })
 
-describe('stub withArgs', () => {
-  it('定义存根指定参数的行为', () => {
-    var callback1 = sinon.stub()
-    callback1.withArgs(2).returns(2) // callback(2) {return 2}
-    // callback1.withArgs(1).throws('this is error')
-    console.log(callback1(2)) // output 2
-    expect(callback1(2)).toBe(2)
+// describe('stub withArgs', () => {
+//   it('定义存根指定参数的行为', () => {
+//     var callback1 = sinon.stub()
+//     callback1.withArgs(2).returns(2) // callback(2) {return 2}
+//     // callback1.withArgs(1).throws('this is error')
+//     console.log(callback1(2)) // output 2
+//     expect(callback1(2)).toBe(2)
+//   })
+// })
+
+// describe('stub onCall', () => {
+//   it('定义存根在第n个调用上的行为', () => {
+//     const stub = sinon.stub()
+//     stub.onCall(0).returns(1) // 第一次调用返回1
+//     stub.onCall(1).returns(2)
+//     stub.returns(3) // 其他都返回3
+//     expect(stub()).toBe(1)
+//     expect(stub()).toBe(2)
+//     expect(stub()).toBe(3)
+//     expect(stub()).toBe(3)
+//   })
+// })
+
+// describe('stub withArgs onxxxCall', () => {
+//   it('结合使用withArgs、onxxxCall', () => {
+//     const stub = sinon.stub()
+//     stub.withArgs(1).onFirstCall().returns(1).onSecondCall().returns(2) // 定义参数为1的行为
+//     stub.returns(3)
+//     expect(stub(1)).toBe(1)
+//     expect(stub(1)).toBe(2)
+//     expect(stub(1)).toBe(3)
+//     expect(stub(1)).toBe(3)
+//   })
+// })
+
+// describe('stub resetBehavior', () => {
+//   it('将存根的行为重置为默认行为', () => {
+//     const stub = sinon.stub()
+//     stub.returns(54)
+//     console.log(stub()) // output 54
+//     stub.resetBehavior()
+//     console.log(stub()) // output undefined
+//     console.log(stub.called) // output true
+//   })
+// })
+
+// describe('stub resetHistory', () => {
+//   it('重置存根的历史记录', () => {
+//     const stub = sinon.stub()
+//     stub()
+//     console.log(stub.called) // output true
+//     stub.resetHistory()
+//     console.log(stub.called) // output false
+//   })
+// })
+
+// const testCb = {
+//   testCb () {
+//   }
+// }
+
+// describe('stub apis', () => {
+//   it('测试stub api', () => {
+//     const stub = sinon.stub()
+//     stub.returnsArg(0) // 返回调用此根的第一个参数
+//     console.log(stub(1)) // output 1
+//     stub.returnsThis() // 使存根返回其this值
+//     console.log(stub({ a: 1 })) // output { a: 1 }
+//     stub.resetBehavior()
+//     stub.resolves(1) // 返回一个promise
+//     console.log(stub().then(res => console.log(res))) // output 1
+//     // stub.throws()
+//     // stub.throwsArg(0)
+//     // console.log(stub(1))
+//     stub.resetBehavior()
+//     stub.callsArg(0) // 使存根调用第一个参数作为回调，第一个参数为func
+//     console.log(stub(function () { return 1 }, (r) => { console.log(r) })) // output 1
+//     stub.resetBehavior()
+//     // stub.callsArgOn(0, this)
+//     // console.log(stub(function () { return 1 }, (r, txt) => { console.log(r, txt) })) // output 1
+//     // stub.yields([() => 3, () => 2])
+//     // stub((r) => console.log(199, r), (r) => console.log(1991, r))
+//     sinon.stub(testCb, 'testCb').yieldsTo('success', [1, 2, 3]) // 使间谍程序调用作为对象属性传递给间谍程序的回调。
+//     testCb.testCb({ success: (r) => console.log(r) })
+//   })
+// })
+
+// const obj = {}
+// obj.sum = function sum (a, b) {
+//   return a + b
+// }
+
+// describe('stub callThrough', () => {
+//   it('当没有条件存根匹配时，则调用包装到存根中的原始方法。', () => {
+//     const stub = sinon.stub(obj, 'sum')
+//     stub
+//       .withArgs(2, 2)
+//       .callsFake(function foo () {
+//         return 'bar'
+//       })
+//     stub.callThrough()
+//     console.log(obj.sum(2, 2)) // output 'bar'
+//     console.log(obj.sum(2, 1)) // output 3
+//   })
+// })
+
+// describe('stub mock', () => {
+//   it('mock的测试', function () {
+//     var myAPI = {
+//       method: function () {
+//         console.info('运行method')
+//       },
+//       func: function () {
+//         console.info('运行method')
+//       }
+//     }
+
+//     var mock = sinon.mock(myAPI)
+//     mock.expects('method').once().returns(2)
+//     mock.expects('func').twice()
+
+//     console.log(myAPI.method()) // output 2
+//     myAPI.func()
+//     myAPI.func()
+
+//     mock.verify()
+//   })
+// })
+
+// ---------------------------- sinon end --------------------------------------------------------------------
+
+// ---------------------------- expect start -----------------------------------------------------------------
+describe('测试 expect', () => {
+  it('learn expect api', () => {
+    expect('test').toBe('test') // output true
+    expect(1).toBe(1) // output true
+    expect(true).toBe(true) // output true
   })
-})
 
-describe('stub onCall', () => {
-  it('定义存根在第n个调用上的行为', () => {
-    const stub = sinon.stub()
-    stub.onCall(0).returns(1) // 第一次调用返回1
-    stub.onCall(1).returns(2)
-    stub.returns(3) // 其他都返回3
-    expect(stub()).toBe(1)
-    expect(stub()).toBe(2)
-    expect(stub()).toBe(3)
-    expect(stub()).toBe(3)
-  })
-})
-
-describe('stub withArgs onxxxCall', () => {
-  it('结合使用withArgs、onxxxCall', () => {
-    const stub = sinon.stub()
-    stub.withArgs(1).onFirstCall().returns(1).onSecondCall().returns(2) // 定义参数为1的行为
-    stub.returns(3)
-    expect(stub(1)).toBe(1)
-    expect(stub(1)).toBe(2)
-    expect(stub(1)).toBe(3)
-    expect(stub(1)).toBe(3)
-  })
-})
-
-describe('stub resetBehavior', () => {
-  it('将存根的行为重置为默认行为', () => {
-    const stub = sinon.stub()
-    stub.returns(54)
-    console.log(stub()) // output 54
-    stub.resetBehavior()
-    console.log(stub()) // output undefined
-    console.log(stub.called) // output true
-  })
-})
-
-describe('stub resetHistory', () => {
-  it('重置存根的历史记录', () => {
-    const stub = sinon.stub()
-    stub()
-    console.log(stub.called) // output true
-    stub.resetHistory()
-    console.log(stub.called) // output false
-  })
-})
-
-const testCb = {
-  testCb () {
-  }
-}
-
-describe('stub apis', () => {
-  it('测试stub api', () => {
-    const stub = sinon.stub()
-    stub.returnsArg(0) // 返回调用此根的第一个参数
-    console.log(stub(1)) // output 1
-    stub.returnsThis() // 使存根返回其this值
-    console.log(stub({ a: 1 })) // output { a: 1 }
-    stub.resetBehavior()
-    stub.resolves(1) // 返回一个promise
-    console.log(stub().then(res => console.log(res))) // output 1
-    // stub.throws()
-    // stub.throwsArg(0)
-    // console.log(stub(1))
-    stub.resetBehavior()
-    stub.callsArg(0) // 使存根调用第一个参数作为回调，第一个参数为func
-    console.log(stub(function () { return 1 }, (r) => { console.log(r) })) // output 1
-    stub.resetBehavior()
-    // stub.callsArgOn(0, this)
-    // console.log(stub(function () { return 1 }, (r, txt) => { console.log(r, txt) })) // output 1
-    // stub.yields([() => 3, () => 2])
-    // stub((r) => console.log(199, r), (r) => console.log(1991, r))
-    sinon.stub(testCb, 'testCb').yieldsTo('success', [1, 2, 3]) // 使间谍程序调用作为对象属性传递给间谍程序的回调。
-    testCb.testCb({ success: (r) => console.log(r) })
-  })
-})
-
-const obj = {}
-obj.sum = function sum (a, b) {
-  return a + b
-}
-
-describe('stub callThrough', () => {
-  it('当没有条件存根匹配时，则调用包装到存根中的原始方法。', () => {
-    const stub = sinon.stub(obj, 'sum')
-    stub
-      .withArgs(2, 2)
-      .callsFake(function foo () {
-        return 'bar'
-      })
-    stub.callThrough()
-    console.log(obj.sum(2, 2)) // output 'bar'
-    console.log(obj.sum(2, 1)) // output 3
-  })
-})
-
-describe('stub mock', () => {
-  it('mock的测试', function () {
-    var myAPI = {
-      method: function () {
-        console.info('运行method')
-      },
-      func: function () {
-        console.info('运行method')
+  expect.extend({
+    toBeWithinRange (received, floor, ceiling) {
+      // console.log(received)
+      const pass = received >= floor && received <= ceiling
+      if (pass) {
+        return {
+          message: () =>
+            `expected ${received} to be within range ${floor} - ${ceiling}`,
+          pass: true
+        }
+      } else {
+        return {
+          message: () =>
+            `expected ${received} not to be within range ${floor} - ${ceiling}`,
+          pass: false
+        }
       }
     }
+  })
+  it('numeric ranges', () => {
+    expect(100).toBeWithinRange(90, 110)
+    expect(101).not.toBeWithinRange(0, 100)
+  })
 
-    var mock = sinon.mock(myAPI)
-    mock.expects('method').once().returns(2)
-    mock.expects('func').twice()
+  const can1 = {
+    flavor: 'grapefruit',
+    ounces: 12
+  }
+  const can2 = {
+    flavor: 'grapefruit',
+    ounces: 12
+  }
 
-    console.log(myAPI.method()) // output 2
-    myAPI.func()
-    myAPI.func()
+  it('have all the same properties', () => {
+    expect(can1).toEqual(can2) // 递归比较对象实例的所有属性 ===
+  })
+  it('are not the exact same can', () => {
+    expect(can1).not.toBe(can2) // 比较原始值或检查对象实例的引用一致性
+    expect(can1.flavor).toBe('grapefruit')
+    expect(can1.flavor).toBe(can2.flavor)
+    expect(0.2 + 0.1).not.toBe(0.3)
+    expect(0.2 + 0.1).toBeCloseTo(0.3) // 浮点
+  })
 
-    mock.verify()
+  // const expected = ['Alice', 'Bob']
+  // console.log(expect.arrayContaining(expected))
+  // expect(['Alice', 'Bob', 'Eve']).arrayContaining(expected)
+  test('resolves to lemon', async () => {
+    // make sure to add a return statement
+    await expect(Promise.resolve('lemon')).resolves.toBe('lemon') // resolve用来解值
+    await expect(Promise.resolve('lemon')).resolves.not.toBe('octopus')
   })
 })
