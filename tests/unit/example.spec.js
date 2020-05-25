@@ -322,9 +322,6 @@ console.log(foo())
 
 // ---------------------------- expect end -----------------------------------------------------------------
 
-// test 325 after
-<<<<<<< Updated upstream
-// test 325
-// test 327 after
-=======
->>>>>>> Stashed changes
+// test 325 after 1
+// test 325 1
+// test 327 after 1
