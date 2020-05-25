@@ -1,17 +1,22 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{value}}1
+    <Test v-model="value"></Test>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Test from './components/Test'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Test
+  },
+  data () {
+    return {
+      value: [1, 2, 3]
+    }
   }
 }
 </script>

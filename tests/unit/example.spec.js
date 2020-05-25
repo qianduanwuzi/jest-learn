@@ -4,7 +4,14 @@
 // import sinon from 'sinon' // 兴农
 // var chai = require('chai') // 断言库
 // var assert = chai.assert
-
+// import test from '../../src/util/index.js'
+// const test1 = test
+jest.mock('../../src/util/index.js')
+const foo = require('../../src/util/index.js')
+// foo.mockResolvedValue({ a: 1 })
+foo.mockImplementation(() => 42)
+console.log(foo())
+// const foo = require('../../../src/util/index.js')
 // 测试套件
 // describe('HelloWorld.vue', () => {
 //   // mocha（摩卡）的玩法，JavaScript测试框架之一，类似的测试框架还有Jasmine、Karma、Tape等
@@ -253,65 +260,64 @@
 // ---------------------------- sinon end --------------------------------------------------------------------
 
 // ---------------------------- expect start -----------------------------------------------------------------
-describe('测试 expect', () => {
-  it('learn expect api', () => {
-    expect('test').toBe('test') // output true
-    expect(1).toBe(1) // output true
-    expect(true).toBe(true) // output true
-  })
+// describe('测试 expect', () => {
+//   it('learn expect api', () => {
+//     expect('test').toBe('test') // output true
+//     expect(1).toBe(1) // output true
+//     expect(true).toBe(true) // output true
+//   })
 
-  expect.extend({
-    toBeWithinRange (received, floor, ceiling) {
-      // console.log(received)
-      const pass = received >= floor && received <= ceiling
-      if (pass) {
-        return {
-          message: () =>
-            `expected ${received} to be within range ${floor} - ${ceiling}`,
-          pass: true
-        }
-      } else {
-        return {
-          message: () =>
-            `expected ${received} not to be within range ${floor} - ${ceiling}`,
-          pass: false
-        }
-      }
-    }
-  })
-  it('numeric ranges', () => {
-    expect(100).toBeWithinRange(90, 110)
-    expect(101).not.toBeWithinRange(0, 100)
-  })
+//   expect.extend({
+//     toBeWithinRange (received, floor, ceiling) {
+//       // console.log(received)
+//       const pass = received >= floor && received <= ceiling
+//       if (pass) {
+//         return {
+//           message: () =>
+//             `expected ${received} to be within range ${floor} - ${ceiling}`,
+//           pass: true
+//         }
+//       } else {
+//         return {
+//           message: () =>
+//             `expected ${received} not to be within range ${floor} - ${ceiling}`,
+//           pass: false
+//         }
+//       }
+//     }
+//   })
+//   it('numeric ranges', () => {
+//     expect(100).toBeWithinRange(90, 110)
+//     expect(101).not.toBeWithinRange(0, 100)
+//   })
 
-  const can1 = {
-    flavor: 'grapefruit',
-    ounces: 12
-  }
-  const can2 = {
-    flavor: 'grapefruit',
-    ounces: 12
-  }
+//   const can1 = {
+//     flavor: 'grapefruit',
+//     ounces: 12
+//   }
+//   const can2 = {
+//     flavor: 'grapefruit',
+//     ounces: 12
+//   }
 
-  it('have all the same properties', () => {
-    expect(can1).toEqual(can2) // 递归比较对象实例的所有属性 ===
-  })
-  it('are not the exact same can', () => {
-    expect(can1).not.toBe(can2) // 比较原始值或检查对象实例的引用一致性
-    expect(can1.flavor).toBe('grapefruit')
-    expect(can1.flavor).toBe(can2.flavor)
-    expect(0.2 + 0.1).not.toBe(0.3)
-    expect(0.2 + 0.1).toBeCloseTo(0.3) // 浮点
-  })
+//   it('have all the same properties', () => {
+//     expect(can1).toEqual(can2) // 递归比较对象实例的所有属性 ===
+//   })
+//   it('are not the exact same can', () => {
+//     expect(can1).not.toBe(can2) // 比较原始值或检查对象实例的引用一致性
+//     expect(can1.flavor).toBe('grapefruit')
+//     expect(can1.flavor).toBe(can2.flavor)
+//     expect(0.2 + 0.1).not.toBe(0.3)
+//     expect(0.2 + 0.1).toBeCloseTo(0.3) // 浮点
+//   })
 
-  // const expected = ['Alice', 'Bob']
-  // console.log(expect.arrayContaining(expected))
-  // expect(['Alice', 'Bob', 'Eve']).arrayContaining(expected)
-  test('resolves to lemon', async () => {
-    // make sure to add a return statement
-    await expect(Promise.resolve('lemon')).resolves.toBe('lemon') // resolve用来解值
-    await expect(Promise.resolve('lemon')).resolves.not.toBe('octopus')
-  })
-})
+//   // const expected = ['Alice', 'Bob']
+//   // console.log(expect.arrayContaining(expected))
+//   // expect(['Alice', 'Bob', 'Eve']).arrayContaining(expected)
+//   test('resolves to lemon', async () => {
+//     await expect(Promise.resolve('lemon')).resolves.toBe('lemon') // resolve用来解值
+//     await expect(Promise.resolve('lemon')).resolves.not.toBe('octopus')
+//   })
+// })
 
-// test
+// ---------------------------- expect end -----------------------------------------------------------------
