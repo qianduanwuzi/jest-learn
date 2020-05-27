@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    {{value}}1
-    <Test v-model="value"></Test>
+    <router-view></router-view>
+    <!-- <Test v-model="value"></Test> -->
   </div>
 </template>
 
 <script>
-import Test from './components/Test'
+// import Test from './components/Test'
 
 export default {
   name: 'App',
   components: {
-    Test
+    // Test
   },
   data () {
     return {
