@@ -14,7 +14,7 @@ export default {
   },
   created () {},
   mounted () {
-    this.test7()
+    this.test4()
   },
   computed: {},
   methods: {
