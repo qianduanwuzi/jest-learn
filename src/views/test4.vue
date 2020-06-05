@@ -1,5 +1,6 @@
 <template>
-  <div class="wrapper"></div>
+  <div class="wrapper">
+  </div>
 </template>
 
 <script>
@@ -20,6 +21,9 @@ export default {
   },
   computed: {},
   methods: {
+    test8 () {
+      // const a = 1
+    },
     test7 () {
       var scene = new THREE.Scene()
       var geometry = new THREE.BoxGeometry(100, 100, 100) // 立方体
